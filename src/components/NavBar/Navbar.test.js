@@ -7,8 +7,6 @@ describe('NavBar', () => {
   it('renders app title', () => {
     const { getByText } = render(<NavBar />);
 
-    expect(
-      getByText('Ryback (this is the navbar, i promise)')
-    ).toBeInTheDocument();
+    expect(getByText('Ryback')).toBeInTheDocument();
   });
 });

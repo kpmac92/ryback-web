@@ -18,6 +18,12 @@
     "url": "https://github.com/kpmac92/ryback-web/issues"
   },
   "homepage": "https://github.com/kpmac92/ryback-web#readme",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
@@ -38,6 +44,7 @@
     "prettier": "^2.0.2"
   },
   "dependencies": {
+    "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
