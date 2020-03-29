@@ -1,5 +1,6 @@
 import React from 'react';
+import NavBar from './components/NavBar';
 
-const App = () => <h1>Ryback</h1>;
+const App = () => <NavBar />;
 
 export default App;
