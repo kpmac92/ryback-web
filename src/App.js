@@ -4,6 +4,7 @@ import './App.scss';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './store/reducers';
+import RecipeListConnector from './components/RecipeList/RecipeListConnector';
 
 const App = () => {
   const store = createStore(
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavBar />
+      <RecipeListConnector />
     </Provider>
   );
 };

@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/kpmac92/ryback-web#readme",
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/src/jest-setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/jest-setup.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(scss)$": "<rootDir>/__mocks__/styleMock.js"
@@ -42,7 +44,8 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "jest": "^25.2.3",
     "parcel-bundler": "^1.12.4",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "redux-mock-store": "^1.5.4"
   },
   "dependencies": {
     "node-sass": "^4.13.1",
