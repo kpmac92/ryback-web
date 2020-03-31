@@ -3,3 +3,9 @@ html, body{
     padding: 0;
     margin: 0;
 }
+
+.app-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

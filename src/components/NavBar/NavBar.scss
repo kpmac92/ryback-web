@@ -3,7 +3,7 @@
     src: local('Sarabun'), url('../../fonts/Sarabun/Sarabun-Regular.ttf') format('truetype');
 }
 
-div{
+.navBarContainer{
     background-color: rgba(62, 162, 255, 0.38);
     width: 100%;
     height: 8rem;
@@ -11,7 +11,7 @@ div{
     justify-content: left;
 }
 
-h1{
+.pageTitle{
     font-family: Sarabun;
     font-style: normal;
     font-weight: normal;

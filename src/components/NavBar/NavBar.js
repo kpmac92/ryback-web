@@ -2,8 +2,8 @@ import React from 'react';
 import './NavBar.scss';
 
 const NavBar = () => (
-  <div>
-    <h1>Ryback</h1>
+  <div className="navBarContainer">
+    <h1 className="pageTitle">Ryback</h1>
   </div>
 );
 

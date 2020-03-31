@@ -1,8 +1,9 @@
 import React from 'react';
+import './RecipeList.scss';
 
 const RecipeList = ({ recipes }) => {
   return (
-    <div>
+    <div className="recipe-list">
       {recipes.map((recipe, i) => (
         <div key={i}>{recipe.name}</div>
       ))}

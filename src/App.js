@@ -14,8 +14,10 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavBar />
-      <RecipeListConnector />
+      <div className="app-container">
+        <NavBar />
+        <RecipeListConnector />
+      </div>
     </Provider>
   );
 };
