@@ -8,7 +8,10 @@ describe('RecipieListConnector', () => {
   it('renders recipe list with recipes in store', () => {
     const state = {
       recipe: {
-        allRecipes: [{ name: 'Wampa Soup' }, { name: 'Mynock Kababs' }],
+        allRecipes: [
+          { name: 'Wampa Soup', ingredients: [] },
+          { name: 'Mynock Kababs', ingredients: [] },
+        ],
       },
     };
     const mockStore = configureStore()(state);
