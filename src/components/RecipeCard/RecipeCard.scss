@@ -17,33 +17,44 @@
 .horiz-flex-container{
     display: flex;
     flex-direction: row;
-    flex-grow: 10
+    flex: 3 3 0;
+        font-family: Sarabun;
+    font-size: 24px;
+    font-weight: semiBold;
 }
 
 .description-container{
     display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    flex-direction: column;
     flex: 1 1 0;
     border-style: solid;
     border-width: .1px .1px 0 0;
+    padding: 2rem 2rem;
 }
 
 .ingredient-container{
+    display: flex;
+    flex-direction: column;
     flex: 1 1 0;
     border-style: solid;
     border-width: .1px 0 0 0;
+    padding: 2rem 2rem;
 }
 
 .recipe-title{
     font-family: Sarabun;
     font-size: 36px;
     font-weight: semiBold;
-    flex-grow: 1
+    padding-left: 1rem;
 }
 
 .description {
     font-family: Sarabun;
     font-size: 24;
+}
+
+.card-header{
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
 }
