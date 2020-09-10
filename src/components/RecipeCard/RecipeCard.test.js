@@ -11,6 +11,7 @@ describe('RecipeCard', () => {
       { name: 'herbs', main: false },
     ],
     description: 'An ancient Roman energy drink',
+    time: 30,
   };
 
   it('renders recipe title', () => {
@@ -27,9 +28,15 @@ describe('RecipeCard', () => {
     expect(queryByText('herbs')).not.toBeInTheDocument();
   });
 
-  it('renders the recipe time', () => {
+  it('renders the recipe description', () => {
     const { getByText } = render(<RecipeCard recipe={recipe} />);
 
     expect(getByText('An ancient Roman energy drink')).toBeInTheDocument();
+  });
+
+  it('renders the recipe time', () => {
+    const { getByText } = render(<RecipeCard recipe={recipe} />);
+
+    expect(getByText('30 minutes')).toBeInTheDocument();
   });
 });

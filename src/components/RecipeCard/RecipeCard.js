@@ -5,6 +5,7 @@ const RecipeCard = ({ recipe }) => (
   <div className="recipe-card">
     <div className="card-header">
       <span className="recipe-title">{recipe.name}</span>
+      <span className="recipe-time">{recipe.time} minutes</span>
     </div>
     <div className="horiz-flex-container">
       <div className="description-container">
