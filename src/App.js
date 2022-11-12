@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import rootReducer from './store/reducers';
 import RecipeListConnector from './components/RecipeList/RecipeListConnector';
 import RecipeList from './components/RecipeList/RecipeList';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 const App = () => {
   const store = createStore(
@@ -13,12 +14,33 @@ const App = () => {
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
+  const rootLayout = (
+    <div className="app-container">
+      <NavBar />
+      <Outlet />
+    </div>
+  );
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: rootLayout,
+      children: [
+        {
+          path: '/',
+          element: <RecipeList />,
+        },
+        {
+          path: 'createRecipe',
+          element: <div>Create Recipe Page</div>,
+        },
+      ],
+    },
+  ]);
+
   return (
     <Provider store={store}>
-      <div className="app-container">
-        <NavBar />
-        <RecipeList />
-      </div>
+      <RouterProvider router={router} />
     </Provider>
   );
 };
