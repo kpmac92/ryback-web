@@ -14,7 +14,7 @@ const RecipeCard = ({ recipe }) => (
       <div className="ingredient-container">
         <span>Main Ingredients: </span>
         <ul>
-          {recipe.ingredients.map((ingredient, i) =>
+          {recipe.ingredients?.map((ingredient, i) =>
             ingredient.main ? <li key={i}>{ingredient.name}</li> : null
           )}
         </ul>

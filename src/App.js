@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './store/reducers';
 import RecipeListConnector from './components/RecipeList/RecipeListConnector';
+import RecipeList from './components/RecipeList/RecipeList';
 
 const App = () => {
   const store = createStore(
@@ -16,7 +17,7 @@ const App = () => {
     <Provider store={store}>
       <div className="app-container">
         <NavBar />
-        <RecipeListConnector />
+        <RecipeList />
       </div>
     </Provider>
   );
