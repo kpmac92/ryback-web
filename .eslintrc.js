@@ -29,6 +29,7 @@ module.exports = {
         singleQuote: true,
       },
     ],
+    'comma-dangle': ['error', 'always-multiline'],
   },
   settings: {
     react: {
