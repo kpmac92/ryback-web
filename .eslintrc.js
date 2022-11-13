@@ -16,6 +16,9 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   parser: '@babel/eslint-parser',
+  parserOptions: {
+    requireConfigFile: false,
+  },
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -29,7 +32,16 @@ module.exports = {
         singleQuote: true,
       },
     ],
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'never',
+        exports: 'never',
+        functions: 'never',
+      },
+    ],
   },
   settings: {
     react: {
