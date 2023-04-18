@@ -10,8 +10,7 @@ const RecipeCard = ({ recipe, refetch }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(id),
-    });
-    refetch();
+    }).then(() => refetch());
   };
 
   return (
