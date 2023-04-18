@@ -35,6 +35,10 @@ const App = () => {
           path: 'createRecipe',
           element: <RecipeForm />,
         },
+        {
+          path: 'editRecipe/:recipeId',
+          element: <RecipeForm />,
+        },
       ],
     },
   ]);
