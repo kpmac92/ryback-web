@@ -6,8 +6,8 @@ const RecipeIngredientInputs = ({
 }) => {
   return recipeIngredients
     ? recipeIngredients.map((recipeIngredient) => (
-        <div key={recipeIngredient.tempId} className="recipe-ingredient">
-          <div className="input-section">
+        <div key={recipeIngredient.tempId} className="form-section">
+          <div className="form-input">
             Name:{' '}
             <input
               onChange={(e) =>
@@ -21,7 +21,7 @@ const RecipeIngredientInputs = ({
               defaultValue={recipeIngredient.ingredientName}
             />
           </div>
-          <div className="input-section">
+          <div className="form-input">
             Amount Numerator:{' '}
             <input
               onChange={(e) =>
@@ -36,7 +36,7 @@ const RecipeIngredientInputs = ({
               type="number"
             />
           </div>
-          <div className="input-section">
+          <div className="form-input">
             Amount Denominator:{' '}
             <input
               onChange={(e) =>

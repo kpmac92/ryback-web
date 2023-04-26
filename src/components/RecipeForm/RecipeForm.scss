@@ -11,4 +11,21 @@
     display: flex;
     flex-direction: column;
     box-shadow: .2rem .35rem .35rem rgba(0, 0, 0, 0.25);
+    margin-top: 1rem;
+    align-items: center;
+    font-family: 'Sarabun';
+}
+
+.form-section {
+    display: flex;
+    flex-direction: row;
+}
+.form-input{
+    margin: .25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-input input {
+    margin-left: 1rem;
 }

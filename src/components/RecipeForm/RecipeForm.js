@@ -63,31 +63,46 @@ const RecipeForm = () => {
     setIngredientList([...filteredList, updatedIngredient]);
   };
 
+  const addIngredient = () => {
+    const maxTempId = ingredientList.reduce(
+      (previous, current) =>
+        current.tempId > previous ? current.tempId : previous,
+      0
+    );
+
+    const newIngredient = {
+      tempId: maxTempId + 1,
+    };
+    setIngredientList([...ingredientList, newIngredient]);
+  };
+
   return (
     <div className="recipe-form">
-      <div className="input-section">
-        Name:{' '}
-        <input
-          name="name"
-          defaultValue={formInput.name}
-          onChange={onInputChange}
-        />
-      </div>
-      <div className="input-section">
-        description:{' '}
-        <input
-          name="description"
-          defaultValue={formInput.description}
-          onChange={onInputChange}
-        />
-      </div>
-      <div className="input-section">
-        time:{' '}
-        <input
-          name="time"
-          defaultValue={formInput.time}
-          onChange={onInputChange}
-        />
+      <div className="form-section">
+        <div className="form-input">
+          Name:
+          <input
+            name="name"
+            defaultValue={formInput.name}
+            onChange={onInputChange}
+          />
+        </div>
+        <div className="form-input">
+          Description:
+          <input
+            name="description"
+            defaultValue={formInput.description}
+            onChange={onInputChange}
+          />
+        </div>
+        <div className="form-input">
+          Time:
+          <input
+            name="time"
+            defaultValue={formInput.time}
+            onChange={onInputChange}
+          />
+        </div>
       </div>
       <h3>Ingredients</h3>
       <RecipeIngredientInputs
@@ -95,6 +110,7 @@ const RecipeForm = () => {
         onIngredientInputChange={onIngredientInputChange}
       />
 
+      <button onClick={addIngredient}>Add Ingredient</button>
       <button onClick={onSubmit}>submit</button>
     </div>
   );

@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import './RecipeList.scss';
 
-const RecipeList = () => {
-  const [recipes, setRecipes] = useState([]);
-
-  const fetchRecipes = () => {
-    data = fetch('http://localhost:8080/recipes')
-      .then((response) => response.json())
-      .then((data) => setRecipes(data));
-  };
-
-  useEffect(fetchRecipes, []);
-
+const RecipeList = ({ recipes, fetchRecipes }) => {
   return (
     <div className="recipe-list">
       {recipes?.map((recipe, i) => (

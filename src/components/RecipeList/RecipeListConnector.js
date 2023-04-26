@@ -1,8 +1,18 @@
-import { connect } from 'react-redux';
 import RecipeList from './RecipeList';
+import React, { useState, useEffect } from 'react';
 
-const mapStateToProps = (state) => ({ recipes: state.recipe.allRecipes });
+const RecipeListConnector = () => {
+  const [recipes, setRecipes] = useState([]);
 
-const RecipeListConnector = connect(mapStateToProps)(RecipeList);
+  const fetchRecipes = () => {
+    data = fetch('http://localhost:8080/recipes')
+      .then((response) => response.json())
+      .then((data) => setRecipes(data));
+  };
+
+  useEffect(fetchRecipes, []);
+
+  return <RecipeList recipes={recipes} fetchRecipes={fetchRecipes} />;
+};
 
 export default RecipeListConnector;

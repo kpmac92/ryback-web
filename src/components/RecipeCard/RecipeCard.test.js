@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeCard from './RecipeCard';
 import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('RecipeCard', () => {
   const recipe = {
@@ -15,13 +16,17 @@ describe('RecipeCard', () => {
   };
 
   it('renders recipe title', () => {
-    const { getByText } = render(<RecipeCard recipe={recipe} />);
+    const { getByText } = render(<RecipeCard recipe={recipe} />, {
+      wrapper: BrowserRouter,
+    });
 
     expect(getByText('Posca')).toBeInTheDocument();
   });
 
   it('renders the main ingredients', () => {
-    const { getByText, queryByText } = render(<RecipeCard recipe={recipe} />);
+    const { getByText, queryByText } = render(<RecipeCard recipe={recipe} />, {
+      wrapper: BrowserRouter,
+    });
 
     expect(getByText('water')).toBeInTheDocument();
     expect(getByText('vinegar')).toBeInTheDocument();
@@ -29,13 +34,17 @@ describe('RecipeCard', () => {
   });
 
   it('renders the recipe description', () => {
-    const { getByText } = render(<RecipeCard recipe={recipe} />);
+    const { getByText } = render(<RecipeCard recipe={recipe} />, {
+      wrapper: BrowserRouter,
+    });
 
     expect(getByText('An ancient Roman energy drink')).toBeInTheDocument();
   });
 
   it('renders the recipe time', () => {
-    const { getByText } = render(<RecipeCard recipe={recipe} />);
+    const { getByText } = render(<RecipeCard recipe={recipe} />, {
+      wrapper: BrowserRouter,
+    });
 
     expect(getByText('30 minutes')).toBeInTheDocument();
   });

@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './store/reducers';
 import RecipeListConnector from './components/RecipeList/RecipeListConnector';
-import RecipeList from './components/RecipeList/RecipeList';
 import RecipeForm from './components/RecipeForm/RecipeForm';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -29,7 +28,7 @@ const App = () => {
       children: [
         {
           path: '/',
-          element: <RecipeList />,
+          element: <RecipeListConnector />,
         },
         {
           path: 'createRecipe',
