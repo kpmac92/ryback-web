@@ -9,10 +9,10 @@ A web app to manage and view recipies.
 * finish ingredient inputs
 ### bugs
 * ingredient list sorting jumps around
-* fix editing ingredients -> need to pass along ingredient id
-* need to figure out how to handle ingredient name changes. maybe just disable it and force a delete/recreate?
+* going from edit to create page leaves form input
 
 ### refactors
 * split out connectors to fetch data
 * add tests for controlled components
 * create common button components
+* create common util module for api calls

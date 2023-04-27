@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './RecipeForm.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import RecipeIngredientInputs from './RecipeIngredientInputs/RecipeIngredientInputs';
@@ -9,25 +9,29 @@ const RecipeForm = () => {
   const { recipeId } = useParams();
   const navigate = useNavigate();
 
+  const fetchRecipeData = useCallback(() => {
+    fetch(`http://localhost:8080/recipes/${recipeId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFormInput({
+          name: data.name,
+          description: data.description,
+          time: data.time,
+        });
+
+        setIngredientList(
+          data.recipeIngredients.map((ingredient, i) => {
+            return { ...ingredient, tempId: i };
+          })
+        );
+      });
+  }, [recipeId]);
+
   useEffect(() => {
     if (recipeId) {
-      fetch(`http://localhost:8080/recipes/${recipeId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setFormInput({
-            name: data.name,
-            description: data.description,
-            time: data.time,
-          });
-
-          setIngredientList(
-            data.recipeIngredients.map((ingredient, i) => {
-              return { ...ingredient, tempId: i };
-            })
-          );
-        });
+      fetchRecipeData();
     }
-  }, [recipeId]);
+  }, [recipeId, fetchRecipeData]);
 
   const onSubmit = () => {
     const body = {
@@ -76,6 +80,32 @@ const RecipeForm = () => {
     setIngredientList([...ingredientList, newIngredient]);
   };
 
+  const deleteIngredient = useCallback(
+    (tempId, ingredientId) => {
+      if (!ingredientId) {
+        setIngredientList(
+          ingredientList.filter((ingredient) => ingredient.tempId != tempId)
+        );
+        return;
+      }
+
+      body = {
+        ingredientId: ingredientId,
+        recipeId: recipeId,
+      };
+
+      fetch('http://localhost:8080/recipeIngredient', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+        //todo: refetch only ingredients
+      }).then(() => fetchRecipeData());
+    },
+    [recipeId, ingredientList, fetchRecipeData]
+  );
+
   return (
     <div className="recipe-form">
       <div className="form-section">
@@ -108,6 +138,7 @@ const RecipeForm = () => {
       <RecipeIngredientInputs
         recipeIngredients={ingredientList}
         onIngredientInputChange={onIngredientInputChange}
+        deleteIngredient={deleteIngredient}
       />
 
       <button onClick={addIngredient}>Add Ingredient</button>

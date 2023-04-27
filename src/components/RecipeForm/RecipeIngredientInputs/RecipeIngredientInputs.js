@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 const RecipeIngredientInputs = ({
   recipeIngredients,
   onIngredientInputChange,
+  deleteIngredient,
 }) => {
   return recipeIngredients
     ? recipeIngredients.map((recipeIngredient) => (
         <div key={recipeIngredient.tempId} className="form-section">
           <div className="form-input">
-            Name:{' '}
+            Name:
             <input
               onChange={(e) =>
                 onIngredientInputChange(
@@ -51,6 +52,16 @@ const RecipeIngredientInputs = ({
               defaultValue={recipeIngredient.amountDenominator}
             />
           </div>
+          <button
+            onClick={() =>
+              deleteIngredient(
+                recipeIngredient.tempId,
+                recipeIngredient.ingredientId
+              )
+            }
+          >
+            Delete
+          </button>
         </div>
       ))
     : null;
