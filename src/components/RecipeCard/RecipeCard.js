@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const RecipeCard = ({ recipe, refetch }) => {
   const deleteRecipe = (id) => {
-    fetch('http://localhost:8080/recipes/delete', {
+    fetch('http://localhost:8080/recipes/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
