@@ -1,25 +1,39 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { addItem, deleteItem, updateItem } from '../../../util/listUtils';
+import './InstructionInputs.scss';
+import InstructionIngredientCard from './InstructionIngredientCard';
 
 const InstructionInputs = ({
   instructionList,
   ingredientList,
   setInstructionList,
 }) => {
-  const addInstruction = useCallback(() => {
-    const maxTempId = instructionList.reduce(
-      (previous, current) =>
-        current.tempId > previous ? current.tempId : previous,
-      0
-    );
-
-    const newInstruction = {
-      tempId: maxTempId + 1,
-    };
-
-    setInstructionList([...instructionList, newInstruction]);
-  }, [instructionList, setInstructionList]);
+  const addInstruction = () => {
+    setInstructionList(addItem(instructionList));
+  };
 
   const onInstructionInputChange = (tempId, key, newValue) => {};
+
+  const deleteInstructionIngredient = (ingredientTempId, instructionTempId) => {
+    //todo: add find to list utils
+    const instruction = instructionList.find(
+      (instruction) => instruction.tempId === instructionTempId
+    );
+
+    const updatedIngredientList = deleteItem(
+      instruction.ingredients,
+      ingredientTempId
+    );
+
+    setInstructionList(
+      updateItem(
+        instructionList,
+        instructionTempId,
+        'ingredients',
+        updatedIngredientList
+      )
+    );
+  };
 
   const addIngredientToInstruction = (instructionTempId, ingredientTempId) => {
     const instruction = instructionList.find(
@@ -27,7 +41,6 @@ const InstructionInputs = ({
     );
 
     const ingredient = ingredientList.find((ingredient) => {
-      console.log(ingredient);
       return ingredient.tempId === ingredientTempId;
     });
 
@@ -49,7 +62,8 @@ const InstructionInputs = ({
   };
 
   return (
-    <div>
+    <div className="instruction-inputs">
+      <h3>Instructions</h3>
       {instructionList
         ? instructionList.map((instruction) => (
             <div key={instruction.tempId} className="form-section">
@@ -57,10 +71,19 @@ const InstructionInputs = ({
                 Text: <input name="text" defaultValue={instruction.text} />
               </div>
               {instruction.ingredients?.map((ingredient) => (
-                <>{ingredient.name}</>
+                <InstructionIngredientCard
+                  key={ingredient.tempId}
+                  ingredientName={ingredient.name}
+                  onDelete={() =>
+                    deleteInstructionIngredient(
+                      ingredient.tempId,
+                      instruction.tempId
+                    )
+                  }
+                />
               ))}
               <div className="form-input">
-                Ingredients:{' '}
+                Ingredients:
                 <select
                   name="ingredients"
                   onChange={(e) =>

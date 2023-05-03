@@ -1,0 +1,26 @@
+.instruction-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.instruction-ingredient-card {
+    background-color: rgb(216, 211, 211);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 5px;
+    font-size: .9rem;
+    margin: .25rem;
+}
+
+.instruction-ingredient-card button {
+    background-color: transparent;
+    border: 1px solid rgb(110, 109, 109);
+    border-radius: 5px;
+    font-size: .6rem;
+    color: rgb(110, 109, 109);
+}
