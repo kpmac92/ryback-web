@@ -3,7 +3,7 @@ import './RecipeForm.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import RecipeIngredientInputs from './RecipeIngredientInputs/RecipeIngredientInputs';
 import InstructionInputs from './InstructionInputs/InstructionInputs';
-import { deleteItem } from '../../util/listUtils';
+import { addItem, deleteItem, updateItem } from '../../util/listUtils';
 
 const RecipeForm = () => {
   const [formInput, setFormInput] = useState({});
@@ -59,33 +59,16 @@ const RecipeForm = () => {
   };
 
   const onIngredientInputChange = (tempId, key, newValue) => {
-    const ingredient = ingredientList.find(
-      (ingredient) => ingredient.tempId === tempId
-    );
-
-    const updatedIngredient = { ...ingredient, [key]: newValue };
-
-    const filteredList = ingredientList.filter((i) => i.tempId != tempId);
-
-    setIngredientList([...filteredList, updatedIngredient]);
+    setIngredientList(updateItem(ingredientList, tempId, key, newValue));
   };
 
   const addIngredient = () => {
-    const maxTempId = ingredientList.reduce(
-      (previous, current) =>
-        current.tempId > previous ? current.tempId : previous,
-      0
-    );
-
-    const newIngredient = {
-      tempId: maxTempId + 1,
-    };
-    setIngredientList([...ingredientList, newIngredient]);
+    setIngredientList(addItem(ingredientList));
   };
 
   const deleteIngredient = useCallback(
     (tempId, ingredientId) => {
-      setIngredientList(deleteItem(ingredientList, 'tempId', tempId));
+      setIngredientList(deleteItem(ingredientList, tempId));
 
       if (ingredientId) {
         body = {

@@ -8,7 +8,6 @@ A web app to manage and view recipies.
 * change ingredient amount input (toggle fraction on/off)
 * finish ingredient inputs
 ### bugs
-* ingredient list sorting jumps around
 * going from edit to create page leaves form input
 
 ### refactors
