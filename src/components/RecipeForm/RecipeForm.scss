@@ -19,6 +19,7 @@
 .form-section {
     display: flex;
     flex-direction: row;
+    margin: .25rem;
 }
 .form-input{
     margin: .25rem;
@@ -28,4 +29,5 @@
 
 .form-input input {
     margin-left: 1rem;
+    width: 3rem;
 }

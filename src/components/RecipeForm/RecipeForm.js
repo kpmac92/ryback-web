@@ -58,36 +58,6 @@ const RecipeForm = () => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
   };
 
-  const onIngredientInputChange = (tempId, key, newValue) => {
-    setIngredientList(updateItem(ingredientList, tempId, key, newValue));
-  };
-
-  const addIngredient = () => {
-    setIngredientList(addItem(ingredientList));
-  };
-
-  const deleteIngredient = useCallback(
-    (tempId, ingredientId) => {
-      setIngredientList(deleteItem(ingredientList, tempId));
-
-      if (ingredientId) {
-        body = {
-          ingredientId: ingredientId,
-          recipeId: recipeId,
-        };
-
-        fetch('http://localhost:8080/recipeIngredient', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
-        });
-      }
-    },
-    [recipeId, ingredientList]
-  );
-
   return (
     <div className="recipe-form">
       <div className="form-section">
@@ -116,11 +86,10 @@ const RecipeForm = () => {
           />
         </div>
       </div>
-      <h3>Ingredients</h3>
       <RecipeIngredientInputs
-        recipeIngredients={ingredientList}
-        onIngredientInputChange={onIngredientInputChange}
-        deleteIngredient={deleteIngredient}
+        ingredientList={ingredientList}
+        setIngredientList={setIngredientList}
+        recipeId={recipeId}
       />
       <InstructionInputs
         instructionList={instructionList}
@@ -128,7 +97,6 @@ const RecipeForm = () => {
         ingredientList={ingredientList}
       />
 
-      <button onClick={addIngredient}>Add Ingredient</button>
       <button onClick={onSubmit}>submit</button>
     </div>
   );
