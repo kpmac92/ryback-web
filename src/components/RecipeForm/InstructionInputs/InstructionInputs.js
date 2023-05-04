@@ -12,7 +12,13 @@ const InstructionInputs = ({
     setInstructionList(addItem(instructionList));
   };
 
-  const onInstructionInputChange = (tempId, key, newValue) => {};
+  const onInstructionInputChange = (tempId, key, newValue) => {
+    setInstructionList(updateItem(instructionList, tempId, key, newValue));
+  };
+
+  const deleteInstruction = (tempId) => {
+    setInstructionList(deleteItem(instructionList, tempId));
+  };
 
   const deleteInstructionIngredient = (ingredientTempId, instructionTempId) => {
     //todo: add find to list utils
@@ -40,9 +46,9 @@ const InstructionInputs = ({
       (instruction) => instruction.tempId === instructionTempId
     );
 
-    const ingredient = ingredientList.find((ingredient) => {
-      return ingredient.tempId === ingredientTempId;
-    });
+    const ingredient = ingredientList.find(
+      (ingredient) => ingredient.tempId === ingredientTempId
+    );
 
     const updatedInstruction = {
       ...instruction,
@@ -68,7 +74,17 @@ const InstructionInputs = ({
         ? instructionList.map((instruction) => (
             <div key={instruction.tempId} className="form-section">
               <div className="form-input">
-                Text: <input name="text" defaultValue={instruction.text} />
+                <input
+                  name="beforeText"
+                  defaultValue={instruction.text}
+                  onChange={(e) =>
+                    onInstructionInputChange(
+                      instruction.tempId,
+                      e.target.name,
+                      e.target.value
+                    )
+                  }
+                />
               </div>
               {instruction.ingredients?.map((ingredient) => (
                 <InstructionIngredientCard
@@ -83,8 +99,25 @@ const InstructionInputs = ({
                 />
               ))}
               <div className="form-input">
+                <input
+                  name="afterText"
+                  defaultValue={instruction.text}
+                  onChange={(e) =>
+                    onInstructionInputChange(
+                      instruction.tempId,
+                      e.target.name,
+                      e.target.value
+                    )
+                  }
+                />
+              </div>
+              <button onClick={() => deleteInstruction(instruction.tempId)}>
+                Delete
+              </button>
+              <div className="form-input">
                 Ingredients:
                 <select
+                  defaultValue=""
                   name="ingredients"
                   onChange={(e) =>
                     addIngredientToInstruction(
@@ -93,6 +126,7 @@ const InstructionInputs = ({
                     )
                   }
                 >
+                  <option disabled></option>
                   {ingredientList.map((ingredient) => (
                     <option key={ingredient.tempId} value={ingredient.tempId}>
                       {ingredient.ingredientName}

@@ -7,6 +7,7 @@ A web app to manage and view recipies.
 * style edit form
 * change ingredient amount input (toggle fraction on/off)
 * finish ingredient inputs
+* allow order changes to instruction list
 ### bugs
 * going from edit to create page leaves form input
 
@@ -15,3 +16,6 @@ A web app to manage and view recipies.
 * add tests for controlled components
 * create common button components
 * create common util module for api calls
+
+### long term features
+* scraper
