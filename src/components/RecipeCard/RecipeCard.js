@@ -2,17 +2,7 @@ import React from 'react';
 import './RecipeCard.scss';
 import { Link } from 'react-router-dom';
 
-const RecipeCard = ({ recipe, refetch }) => {
-  const deleteRecipe = (id) => {
-    fetch('http://localhost:8080/recipes/', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(id),
-    }).then(() => refetch());
-  };
-
+const RecipeCard = ({ recipe, deleteRecipe }) => {
   return (
     <div className="recipe-card">
       <div className="card-header">

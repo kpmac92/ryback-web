@@ -48,4 +48,17 @@ describe('RecipeCard', () => {
 
     expect(getByText('30 minutes')).toBeInTheDocument();
   });
+
+  it('calls delete recipe when delete button is clicked', () => {
+    const mockDelete = jest.fn();
+
+    const { getByText } = render(
+      <RecipeCard recipe={recipe} deleteRecipe={mockDelete} />,
+      { wrapper: BrowserRouter }
+    );
+
+    getByText('Delete').click();
+
+    expect(mockDelete).toBeCalled();
+  });
 });

@@ -7,7 +7,7 @@ describe('List Utils', () => {
   ];
   describe('delete item', () => {
     it('returns list without specified item', () => {
-      const result = deleteItem(input, 'someId', 4);
+      const result = deleteItem(input, 4, 'someId');
 
       expect(result).toEqual([{ someId: 2, someField: 'some value' }]);
     });
@@ -28,10 +28,10 @@ describe('List Utils', () => {
 
       const result = updateItem(
         input,
-        'someId',
         2,
         'someField',
-        'some updated value'
+        'some updated value',
+        'someId'
       );
 
       expect(result).toEqual(expectedResult);

@@ -1,12 +1,12 @@
 import React from 'react';
-import RecipeCard from '../RecipeCard/RecipeCard';
+import RecipeCardConnector from '../RecipeCard/RecipeCardConnector';
 import './RecipeList.scss';
 
 const RecipeList = ({ recipes, fetchRecipes }) => {
   return (
     <div className="recipe-list">
       {recipes?.map((recipe, i) => (
-        <RecipeCard key={i} recipe={recipe} refetch={fetchRecipes} />
+        <RecipeCardConnector key={i} recipe={recipe} refetch={fetchRecipes} />
       ))}
     </div>
   );
